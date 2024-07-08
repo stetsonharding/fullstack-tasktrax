@@ -12,7 +12,7 @@ Node.js
 Mongo.DB
 Next, clone this repository and install dependencies:
 
-git clone git@github.com:danielstern/express-react-fullstack.git
+git clone https://github.com/stetsonharding/fullstack-tasktrax.git
 npm install
 Also, make sure MongoDB is running by navigating to the installation directory and running (in cmd or terminal), replacing the path with your chosen Mongo directory:
 
