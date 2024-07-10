@@ -1,11 +1,11 @@
-import { group } from 'mongodb/lib/operations/collection_ops';
 import React from 'react';
 import { connect } from 'react-redux';
 
-export const TaskList = ({tasks}) => {
+export const TaskList = ({tasks, name}) => {
     return(
 <div>
-    {tasks.map(task => (<div>{task.name}</div>))}
+    <h3>{name}</h3>
+    {tasks.map(task => (<div key={task.id}>{task.name}</div>))}
 </div>
     )
 }  
@@ -15,7 +15,7 @@ let groupID = ownProps.id;
 return {
     name: ownProps.name,
     id: groupID,
-    task: state.tasks.filter(task => task.group === groupID)
+    tasks: state.tasks.filter(task => task.group === groupID)
 }
 }
 
