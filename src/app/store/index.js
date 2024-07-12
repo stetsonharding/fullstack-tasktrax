@@ -22,7 +22,11 @@ export const store = createStore(
                        owner: action.ownerID,
                        isComplete: false
 
-                    } ]
+                    }]
+                    case mutations.SET_TASK_COMPLETE:
+                        return tasks.map(task => {
+                            return task.id === action.id ? {...task, isComplete: action.isComplete} : task;
+                        })
             }
             return tasks;
         },

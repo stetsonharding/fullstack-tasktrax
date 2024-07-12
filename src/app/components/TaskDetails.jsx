@@ -1,42 +1,54 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import * as mutations from '../store/mutations'
 
-export const TaskDetails = ({id, comments, task, groups, isComplete}) => {
-return (
+export const TaskDetails = ({ id, comments, task, groups, isComplete, setTaskComplete }) => {
+  return (
     <div>
-        <h3>{task.name}</h3>
-        <button>Complete Task</button>
-        <div>
-        <span>Change group:</span>
-        {" "}
+      <div>
+        <input value={task.name} />
+      </div>
+      <div>
+        <button onClick={() => setTaskComplete(id, !isComplete)}>{isComplete ? "Reopen" : "Complete"}</button>
+      </div>
+      <div>
+        <span>Change group:</span>{" "}
         <select>
-            {groups.map(group => (
-                <option key={group.id} value={group.id}>{group.name}</option>
-            ))}
+          {groups.map((group) => (
+            <option key={group.id} value={group.id}>
+              {group.name}
+            </option>
+          ))}
         </select>
-
-        </div>
-     <Link to="/Dashboard">
+      </div>
+      <Link to="/Dashboard">
         <button>Done</button>
-     </Link>
+      </Link>
     </div>
-)
-}
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
- 
-   let id = ownProps.match.params.id;
-   let task = state.tasks.find(task => task.id === id);
-   let groups = state.groups;
+  let id = ownProps.match.params.id;
+  let task = state.tasks.find((task) => task.id === id);
+  let groups = state.groups;
 
-   return{
+  return {
     id,
     task,
     groups,
-    isComplete: task.isComplete
-   }
-
+    isComplete: task.isComplete,
   };
+};
 
-export const ConnectedTaskDetail = connect(mapStateToProps)(TaskDetails)
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const id = ownProps.match.params.id;
+return{
+  setTaskComplete(id, isComplete){
+    dispatch(mutations.setTaskComplete(id, isComplete))
+   }
+}
+}
+
+export const ConnectedTaskDetail = connect(mapStateToProps, mapDispatchToProps)(TaskDetails);
