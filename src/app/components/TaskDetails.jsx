@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from '../store/mutations'
 
-export const TaskDetails = ({ id, comments, task, groups, isComplete, setTaskComplete }) => {
+export const TaskDetails = ({setTaskName, id, comments, task, groups, isComplete, setTaskComplete }) => {
   return (
     <div>
       <div>
-        <input value={task.name} />
+        <input onChange={setTaskName} value={task.name} />
       </div>
       <div>
         <button onClick={() => setTaskComplete(id, !isComplete)}>{isComplete ? "Reopen" : "Complete"}</button>
@@ -47,7 +47,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 return{
   setTaskComplete(id, isComplete){
     dispatch(mutations.setTaskComplete(id, isComplete))
-   }
+   },
+  setTaskName(e){
+    dispatch(mutations.setTaskName(id, e.target.value))
+  }
+
 }
 }
 
