@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import * as sagas from "./sagas.mock";
 import * as mutations from "./mutations";
 
+
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
@@ -36,6 +37,12 @@ export const store = createStore(
               ? { ...task, name: action.name }
               : task;
           });
+          case mutations.SET_GROUP_NAME:
+            return tasks.map((task) => {
+              return task.id === action.id
+                ? { ...task, group: action.groupID }
+                : task;
+            });
       }
       return tasks;
     },

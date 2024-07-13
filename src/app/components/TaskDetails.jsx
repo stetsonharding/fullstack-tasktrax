@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from '../store/mutations'
 
-export const TaskDetails = ({setTaskName, id, comments, task, groups, isComplete, setTaskComplete }) => {
+export const TaskDetails = ({setGroupName, setTaskName, id, comments, task, groups, isComplete, setTaskComplete }) => {
   return (
     <div>
       <div>
@@ -14,7 +14,7 @@ export const TaskDetails = ({setTaskName, id, comments, task, groups, isComplete
       </div>
       <div>
         <span>Change group:</span>{" "}
-        <select>
+        <select onChange={setGroupName} value={task.group}>
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {group.name}
@@ -50,6 +50,9 @@ return{
    },
   setTaskName(e){
     dispatch(mutations.setTaskName(id, e.target.value))
+  },
+  setGroupName(e){
+    return dispatch(mutations.setGroupName(id, e.target.value))
   }
 
 }
