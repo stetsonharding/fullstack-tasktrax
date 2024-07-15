@@ -11,7 +11,8 @@
     "server-dev": "nodemon src/server --exec babel-node src/server",
     "start-dev": "concurrently \"npm run server-dev\" \"npm run dev\"",
     "server-spec": "babel-node src/server/server.spec",
-    "start": "npm run server"
+    "start": "npm run server",
+    "initialize": "babel-node src/server/initialize-db"
   },
   "keywords": [
     "react",
@@ -38,8 +39,8 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.2",
-    "webpack": "^4.17.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "webpack": "^4.17.2"
   },
   "engines": {
     "node": "9.2.0"
@@ -50,6 +51,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@types/mongodb": "^4.0.7",
     "babel-loader": "^8.0.2",
     "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
