@@ -45,6 +45,20 @@ export const updateTask = async (task) => {
 }
 
 
+export const deleteTask = async (task) => {
+    let { id } = task;
+    let db = await connectDB();
+    let collection = db.collection('tasks')
+
+    //update group attr
+    if (id) {
+        //Pass the id of the task you want to update, and set the new group user has defined
+        await collection.deleteOne({ id })
+    }
+
+}
+
+
 //root to add new tasks
 app.post('/task/new', async (req, res) => {
     let task = req.body.task;
@@ -56,5 +70,12 @@ app.post('/task/new', async (req, res) => {
 app.post('/task/update', async (req, res) => {
     let task = req.body.task;
     await updateTask(task);
+    res.status(200).send();
+})
+
+//root to delete tasks
+app.post('/task/delete', async (req, res) => {
+    let task = req.body.task;
+    await deleteTask(task);
     res.status(200).send();
 })
