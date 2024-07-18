@@ -32,11 +32,11 @@ export const updateTask = async (task) => {
     //update group attr
     if (group) {
         //Pass the id of the task you want to update, and set the new group user has defined
-        await collection.updateOne({ id }, { $set: group })
+        await collection.updateOne({ id }, { $set: {group} })
     }
     //update name attr
     if (name) {
-        await collection.updateOne({ id }, { $set: { name } })
+        await collection.updateOne({ id }, { $set:  {name}  })
     }
     //update isComplete attr
     if (isComplete !== undefined) {
