@@ -20,7 +20,7 @@ export function* taskCreationSaga() {
             group: groupID,
             owner: ownerID,
             isComplete: false,
-            name: "User New Task"
+            name: "New Task"
            } 
         })
     }
@@ -35,8 +35,8 @@ export function* taskModificationSaga() {
             mutations.SET_TASK_COMPLETE
         ])
 
-        // console.log(task)
-         axios.post(url + '/task/update', {
+      
+        axios.post(url + '/task/update', {
             task:{
                 id: task.taskID,
                 group:task.groupID,
@@ -44,5 +44,7 @@ export function* taskModificationSaga() {
                 name: task.name
             }
         })
+
+       
     }
 }

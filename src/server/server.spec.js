@@ -1,20 +1,20 @@
 import {addNewTask, updateTask, deleteTask} from './server'
 
-
+//Testing purposes
 (async function myFuncTest () {
     //  await addNewTask({
-    //     name: 'My Task Number 2',
+    //     name: 'New Task Added',
     //     id:'12345'
     // })
 
     // await updateTask({
-    //     id:'1234',
-    //     name: 'task1234 -- UPDATED!'
+    //     id:'12345',
+    //     name: 'New Task Added - Updated'
     // })
 
-    await deleteTask({
-        id:'12345',
-    })
+    // await deleteTask({
+    //     id:'12345',
+    // })
 
 })();
 

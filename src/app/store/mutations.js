@@ -21,24 +21,24 @@ export const createTask = (taskID, groupID, ownerID) =>({
 export const setTaskComplete = (id, isComplete) => (
     {
         type: SET_TASK_COMPLETE,
-        id: id,
+        taskID: id,
         isComplete
     }
 )
 
-export const setTaskName = (id, name) => (
+export const setTaskName = (taskID, name) => (
     {
         type: SET_TASK_NAME,
-        id: id,
+       taskID,
         name
     }
 )
 
-export const setGroupName = (id, groupID) => (
+export const setGroupName = (taskID, groupID) => (
     {
         type: SET_GROUP_NAME,
+        taskID,
         groupID,
-        id: id
         
     }
 )
