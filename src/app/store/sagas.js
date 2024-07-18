@@ -48,3 +48,16 @@ export function* taskModificationSaga() {
        
     }
 }
+
+export function* taskDelete(){
+    while(true) {
+        const task = yield take(mutations.SET_DELETE_TASK);
+
+        axios.post(url + '/task/delete', {
+            task:{
+                id: task.taskID,
+                
+            }
+        })
+    }
+}
