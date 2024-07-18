@@ -43,6 +43,10 @@ export const store = createStore(
                 ? { ...task, group: action.groupID }
                 : task;
             });
+            case mutations.SET_DELETE_TASK:
+              return tasks.filter(task => {
+                return task.id !== action.taskID
+              })
       }
       return tasks;
     },
