@@ -7,13 +7,22 @@ import createSagaMiddleware from "redux-saga";
 import * as sagas from "./sagas";
 import * as mutations from "./mutations";
 
-
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
   combineReducers({
-    session(session = defaultState.session) {
-      return session
+    session(userSession = defaultState.session || {}, action) {
+      let { type, authenticated, session } = action;
+      switch (type) {
+        case mutations.REQUEST_AUTHENTICATE_USER:
+          return { ...userSession, authenticated: mutations.AUTHENTICATED };
+        case mutations.PROCESSING_AUTHENTICATE_USER:
+          return { ...userSession, authenticated };
+        // case mutations.NOT_AUTHENTICATED:
+        //   return { ...session, authenticated: mutations.NOT_AUTHENTICATED };
+        default:
+          return userSession;
+      }
     },
     tasks(tasks = defaultState.tasks, action) {
       switch (action.type) {
@@ -40,16 +49,16 @@ export const store = createStore(
               ? { ...task, name: action.name }
               : task;
           });
-          case mutations.SET_GROUP_NAME:
-            return tasks.map((task) => {
-              return task.id === action.taskID
-                ? { ...task, group: action.groupID }
-                : task;
-            });
-            case mutations.SET_DELETE_TASK:
-              return tasks.filter(task => {
-                return task.id !== action.taskID
-              })
+        case mutations.SET_GROUP_NAME:
+          return tasks.map((task) => {
+            return task.id === action.taskID
+              ? { ...task, group: action.groupID }
+              : task;
+          });
+        case mutations.SET_DELETE_TASK:
+          return tasks.filter((task) => {
+            return task.id !== action.taskID;
+          });
       }
       return tasks;
     },
