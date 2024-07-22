@@ -4,6 +4,8 @@ import bodyParser from 'body-parser'
 import { connectDB } from './connect-db'
 import "./initialize-db"
 
+import { authenticationRoute } from './authenticate'
+
 let port = 7777;
 
 //create new express instance
@@ -17,6 +19,8 @@ app.use(
     bodyParser.urlencoded({ extended: true }),
     bodyParser.json()
 );
+
+authenticationRoute(app)
 
 //function to add task and communicate with database for testing
 export const addNewTask = async (task) => {
@@ -80,3 +84,4 @@ app.post('/task/delete', async (req, res) => {
     await deleteTask(task);
     res.status(200).send();
 })
+
