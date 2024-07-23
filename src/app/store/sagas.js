@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as mutations from './mutations'
 import {history} from './History'
 
-const url = "http://localhost:7777"
+const url = process.env.NODE_ENV === 'production' ? '' : "http://localhost:7777"
 
 //Saga to add a new task
 export function* taskCreationSaga() {
