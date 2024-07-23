@@ -3,10 +3,11 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import { connectDB } from './connect-db'
 import "./initialize-db"
+import path from 'path'
 
 import { authenticationRoute } from './authenticate'
 
-let port = 7777;
+let port = process.env.PORT || 7777;
 
 //create new express instance
 let app = express();
@@ -21,6 +22,15 @@ app.use(
 );
 
 authenticationRoute(app)
+
+
+
+if(process.env.NODE_ENV == 'production') {
+    app.use(express.static(path.resolve(__dirname,'../../dist')));
+    app.get('/*',(req,res) => {
+        res.sendFile(path.resolve('index.html'))
+    })
+}
 
 //function to add task and communicate with database for testing
 export const addNewTask = async (task) => {
