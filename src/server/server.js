@@ -25,24 +25,24 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
-//Plugins used in application
-app.use(
-    cors(corsOptions),
-    //Let us use post requests
-    bodyParser.urlencoded({ extended: true }),
-    bodyParser.json()
-);
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
 
-authenticationRoute(app)
+// Use bodyParser after CORS middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+// Define routes after middleware setup
+authenticationRoute(app);
 
-
-if(process.env.NODE_ENV == 'production') {
-    app.use(express.static(path.resolve(__dirname,'../../dist')));
-    app.get('/*',(req,res) => {
-        res.sendFile(path.resolve('index.html'))
-    })
+// Serve static files for production
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.resolve(__dirname, '../../dist')));
+    app.get('/*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
+    });
 }
+
 
 //function to add task and communicate with database for testing
 export const addNewTask = async (task) => {
