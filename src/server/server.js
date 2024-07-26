@@ -17,10 +17,12 @@ let port = process.env.PORT || 7777;
 let app = express();
 app.listen(port, console.log('Server lisening on port', port))
 
-// Allow requests from your frontend origin
+// CORS configuration
 const corsOptions = {
-    origin: 'https://tasktrax-691ef54c2e05.herokuapp.com',
-    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+    origin: 'https://tasktrax-691ef54c2e05.herokuapp.com', // Your frontend origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 200
 };
 
 //Plugins used in application
