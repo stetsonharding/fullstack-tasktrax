@@ -12,9 +12,6 @@ let port = process.env.PORT || 7777;
 
 
 
-TODO: //heroku ps:scale web=0 CHAGNE THIS TO ONE
-
-
 
 //create new express instance
 let app = express();
