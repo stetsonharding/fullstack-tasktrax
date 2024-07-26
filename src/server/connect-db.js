@@ -1,8 +1,12 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
+
+// Load environment variables from .env file
+dotenv.config();
 
 //const url = process.env.ORMONGO_URL || 'mongodb://localhost:27017/myorganizer';
-const url = "mongodb+srv://stetsonharding:LfaXTEVJ3LG5RCHI@tasktrax.jbd2uh2.mongodb.net/?retryWrites=true&w=majority&appName=TaskTrax" || 'mongodb://localhost:27017/TaskTrax'
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/TaskTrax'
 //Connection for reuse
 let db = null;
 
