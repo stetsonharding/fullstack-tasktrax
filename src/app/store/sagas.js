@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as mutations from './mutations'
 import {history} from './History'
 
-const url = process.env.NODE_ENV === 'production' ? 'https://react-express-tasktrax-fe0d04212ebe.herokuapp.com' : "http://localhost:7777"
+const url = process.env.NODE_ENV === 'production' ? 'https://tasktrax-691ef54c2e05.herokuapp.com' : "http://localhost:7777"
 
 //Saga to add a new task
 export function* taskCreationSaga() {
