@@ -20,34 +20,38 @@ async function assembleUserState(user) {
     },
   };
 }
-
 export const authenticationRoute = (app) => {
   app.post("/authenticate", async (req, res) => {
-    let { username, password } = req.body;
+    try {
+      const { username, password } = req.body;
 
-    let db = await connectDB();
+      const db = await connectDB();
 
-    let userCollection = db.collection("users");
+      const userCollection = db.collection("users");
 
-    let user = await userCollection.findOne({ name: username });
+      const user = await userCollection.findOne({ name: username });
 
-    if (!user) return res.status(500).send("User Not Found!");
+      if (!user) return res.status(404).send("User Not Found!");
 
-    let hash = md5(password);
+      const hash = md5(password);
 
-    let passwordCorrect = hash === user.passwordHash;
+      const passwordCorrect = hash === user.passwordHash;
 
-    if (!passwordCorrect) return res.status(500).send("Password Incorrect");
+      if (!passwordCorrect) return res.status(401).send("Password Incorrect");
 
-    let token = uuid();
+      const token = uuid();
 
-    authenticationTokens.push({
-      token: token,
-      userId: user.id,
-    });
+      authenticationTokens.push({
+        token: token,
+        userId: user.id,
+      });
 
-    let state =  await assembleUserState(user);
+      const state = await assembleUserState(user);
 
-    res.send({ token, state });
+      res.send({ token, state });
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      res.status(500).send("Internal Server Error");
+    }
   });
 };
