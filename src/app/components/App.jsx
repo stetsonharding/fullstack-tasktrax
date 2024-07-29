@@ -25,7 +25,7 @@ export const App = () => (
 
       <Provider store={store}>
          <div>
-            <ConnectedNavigation />
+            {/* <ConnectedNavigation /> */}
 
             <Route exact path='/' component={ConnectedLogin} />
             <Route exact path="/Dashboard" render={RouteGaurd(ConnectedDashboard)} />

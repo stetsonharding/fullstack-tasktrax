@@ -1,24 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as mutations from "../store/mutations";
-import { Button } from "bootstrap";
+
+import { ConnectedNavigation } from "./Navigation";
+import login_bg from "../../assets/login_bg.jpg"
 
 export const Login = ({ authenticateUser, authenticated }) => {
 
   return (
-    <>
-      <div className="container d-flex justify-content-center align-items-center flex-column h-75">
-        <div style={{width: '410px'}} className="text-left mb-3">
+    <div className="container-fluid d-flex justify-content-center align-items-center h-100" style={{backgroundImage: `url(${login_bg})`,backgroundSize: 'cover',backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat'}}>
+    <div className="row justify-content-center w-75 h-50">
+      <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center flex-column rounded" style={{ backgroundColor: 'white' }}>
+       <ConnectedNavigation />
+        <div className="w-75 mb-3 ">
           <h3>Login</h3>
           <i><h5 className="lead text-dark">to get started</h5></i>
         </div>
         <form
           onSubmit={authenticateUser}
-          className="d-flex flex-column justify-content-center align-items-center w-50 rounded"
-          style={{ backgroundColor: 'white'}}
+          className="d-flex flex-column justify-content-center align-items-center w-100 rounded"
         >
           <input
-            className="p-2 rounded w-75"
+            className="p-2 rounded w-75 mb-2"
             type="text"
             placeholder="Enter Username"
             name="username"
@@ -35,16 +38,17 @@ export const Login = ({ authenticateUser, authenticated }) => {
           />
           <span>
             {authenticated === mutations.NOT_AUTHENTICATED ? (
-              <p className='text-left'>Login Incorrect</p>
+              <p className='text-left text-danger'>Login Incorrect</p>
             ) : null}
           </span>
-          <button className=" w-75 btn btn-primary" type="submit">
+          <button className="w-75 btn btn-primary" type="submit">
             Login
           </button>
         </form>
       </div>
-    </>
-  );
+    </div>
+  </div>
+);
 };
 
 const mapStateToProps = ({ session }) => ({

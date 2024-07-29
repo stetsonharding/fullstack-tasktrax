@@ -57,6 +57,7 @@
     "babel-loader": "^8.0.2",
     "concurrently": "^4.0.1",
     "cross-env": "^5.2.0",
+    "file-loader": "^6.2.0",
     "highground": "^1.0.3-beta",
     "jest": "^23.6.0",
     "mongodb": "^3.1.10",
