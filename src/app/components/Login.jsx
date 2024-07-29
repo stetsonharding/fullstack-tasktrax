@@ -14,7 +14,7 @@ export const Login = ({ authenticateUser, authenticated }) => {
   };
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center h-100" style={{ backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat' }}>
-      <div className="row justify-content-center w-75 h-75 rounded" style={{backgroundColor: 'white'}}>
+      <div className="row  d-flex flex-col flex-sm-row justify-content-center w-75 h-50 rounded" style={{backgroundColor: 'white'}}>
           <LoginIcon />
         <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center  rounded">
           <div className="d-flex justify-content-center align-items-center w-100 flex-column rounded">
