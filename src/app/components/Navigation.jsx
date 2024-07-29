@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const Navigation = () => {
     return(
-        <Link to="/Dashboard"><h2>Application</h2></Link>
+        <Link to="/Dashboard"><i><h3  className="p-3"style={{textDecoration: 'none', color:'grey'}}>Task Trax</h3></i></Link>
     )
 }
 
