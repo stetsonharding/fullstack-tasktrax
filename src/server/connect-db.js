@@ -16,17 +16,10 @@ export async function connectDB() {
 
     try{
 
-        // let client = await MongoClient.connect(url, { useUnifiedTopology: true });
-
-        const client = await MongoClient.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            ssl: true,
-            sslValidate: false, // Adjust based on your SSL requirements
-          });
-
-          db = client.db('test');
-          return db;
+        let client = await MongoClient.connect(url, { useUnifiedTopology: true });
+        db = client.db()
+        console.info('Got DB,', db)
+        return db;
     }catch(error){
         console.error('Failed to connect to database', error)
         throw new Error("database connection error")
