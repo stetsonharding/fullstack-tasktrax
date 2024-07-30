@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export const TaskList = ({ tasks, name, id, createNewTask }) => {
   return (
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center" >
-    <div className="card mt-5 m-4 " style={{width:'88%', backgroundColor:'lightgrey'}}>
-      <h3>{name}</h3>
+    <div className="card mt-5 m-4" style={{width:'88%', backgroundColor:'#dfdfdf'}}>
+      <h5 className="p-2 italic">{name}</h5>
       <div>
         {tasks.map((task) => (
           <Link key={task.id} to={`/taskDetail/${task.id}`}>
@@ -16,7 +16,7 @@ export const TaskList = ({ tasks, name, id, createNewTask }) => {
           </Link>
         ))}
       </div>
-      <button onClick={() => createNewTask(id)}>Add Task</button>
+      <button className="p-2 m-3 border-none rounded btn btn-light" onClick={() => createNewTask(id)}>+Add Task</button>
     </div>
 
     </div>
