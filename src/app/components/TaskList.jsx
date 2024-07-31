@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { requestTaskCreation } from "../store/mutations";
-import { Link } from "react-router-dom";
+
 import Task from "./Task";
 
 export const TaskList = ({ tasks, name, id, createNewTask }) => {
@@ -14,9 +14,9 @@ export const TaskList = ({ tasks, name, id, createNewTask }) => {
         <h5 className="p-2 italic">{name}</h5>
         <div className="" style={{ height: '100%', overflow: 'auto' }}>
           {tasks.map((task) => (
-            <Link key={task.id} to={`/taskDetail/${task.id}`}>
+          
               <Task key={task.id} task={task} />
-            </Link>
+           
           ))}
         </div>
         <div className="d-flex align-items-end justify-content-center w-100">
