@@ -1,21 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
-import { requestTaskCreation } from '../store/mutations'
-import { Link } from "react-router-dom";
+import { requestTaskCreation } from "../store/mutations";
+
+import Task from "./Task";
 
 export const TaskList = ({ tasks, name, id, createNewTask }) => {
   return (
-    <div>
-      <h3>{name}</h3>
-      <div>
-        {tasks.map((task) => (
-          <Link key={task.id} to={`/taskDetail/${task.id}`}>
-            <div key={task.id}>{task.name}</div>
-
-          </Link>
-        ))}
+    <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center h-100">
+      <div
+        className="card mt-5 m-4"
+        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: 'auto' }}
+      >
+        <h5 className="p-2 italic">{name}</h5>
+        <div className="" style={{ height: '100%', overflow: 'auto' }}>
+          {tasks.map((task) => (
+          
+              <Task key={task.id} task={task} />
+           
+          ))}
+        </div>
+        <div className="d-flex align-items-end justify-content-center w-100">
+          <button
+            className="p-2 m-3  rounded btn btn-light w-100"
+            onClick={() => createNewTask(id)}
+          >
+            +Add Task
+          </button>
+        </div>
       </div>
-      <button onClick={() => createNewTask(id)}>Add Task</button>
     </div>
   );
 };
@@ -32,10 +44,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createNewTask(id) {
-      console.log('creating new task..', id)
-      dispatch(requestTaskCreation(id))
-    }
-  }
-}
+      console.log("creating new task..", id);
+      dispatch(requestTaskCreation(id));
+    },
+  };
+};
 
-export const ConnectedTaskList = connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export const ConnectedTaskList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TaskList);

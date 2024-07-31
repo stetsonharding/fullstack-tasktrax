@@ -10,7 +10,6 @@ export const Login = ({ authenticateUser, authenticated }) => {
     background: 'linear-gradient(55deg, #018de2,#0067ce)',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
-    
   };
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center h-100" style={{ backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat' }}>
