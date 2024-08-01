@@ -22,11 +22,8 @@ const RouteGaurd = Component => ({match}) => {
 
 export const App = () => (
    <Router history={history}>
-
       <Provider store={store}>
          <div>
-            {/* <ConnectedNavigation /> */}
-
             <Route exact path='/' component={ConnectedLogin} />
             <Route exact path="/Dashboard" render={RouteGaurd(ConnectedDashboard)} />
             <Route exact path='/taskDetail/:id' render={RouteGaurd(ConnectedTaskDetail)} />

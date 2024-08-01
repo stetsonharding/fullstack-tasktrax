@@ -70,11 +70,12 @@ while(true) {
     try{
         const {data} = yield axios.post(url + '/authenticate', {username, password});
 
+
         if(!data) {
             throw new Error();
         }
 
-        console.log('authenticated', data)
+        console.log('authenticated', data.state)
 
         yield put(mutations.setState(data.state))
         yield put (mutations.processAuthenticateUser(mutations.AUTHENTICATED))

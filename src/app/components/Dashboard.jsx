@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedTaskList } from './TaskList'
 
+import { ConnectedNavigation } from './Navigation';
+
 export const Dashboard = ({ groups }) => {
     return (
         <div className="container-fluid d-flex justify-content-center h-75">
+            <ConnectedNavigation />
             <div className="row w-100">
             {groups.map(group => (
                     <ConnectedTaskList key={group.id} id={group.id} name={group.name} />

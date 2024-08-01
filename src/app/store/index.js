@@ -78,8 +78,13 @@ export const store = createStore(
       }
       return groups;
     },
-    users(users = []) {
-      return users;
+    users(users = [], action) {
+      switch (action.type) {
+        case mutations.SET_STATE:
+          console.log("the User is:" , action.state.users)
+            return action.state.users;
+    }
+    return users;
     },
   }),
 
