@@ -12,6 +12,7 @@ export const AUTHENTICATING = 'AUTHENTICATING'
 export const AUTHENTICATED = 'AUTHENTICATED'
 export const NOT_AUTHENTICATED ='NOT_AUTHENTICATED'
 export const SET_STATE = 'SET_STATE'
+export const SET_USERNAME = "SET_USERNAME"
 
 
 
@@ -56,8 +57,6 @@ export const setDeleteTask = (taskID) => (
     {
         type: SET_DELETE_TASK,
         taskID
-       
-        
     }
 )
 
@@ -77,3 +76,9 @@ export const setState = (state = {}) => ({
     type: SET_STATE,
     state
 })
+
+export const setUsername = (name) => ({
+    type: SET_USERNAME,
+    name
+})
+

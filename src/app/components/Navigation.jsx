@@ -1,13 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ConnectedUsernameDisplay } from './userNameDisplay';
+import * as mutations from "../store/mutations"
+const Navigation = ({id, authenticated}) => {
 
-const Navigation = () => {
+    const gradientTextStyle = {
+        background: 'linear-gradient(55deg, #018de2,#0067ce)',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+      };
     return (
         <div>
-            <Link to="/Dashboard"><i><h3 className="mb-5" style={{ textDecoration: 'none', color: 'primary-blue' }}>Task Trax</h3></i></Link>
+            
+            <Link to="/Dashboard"><h3 style={gradientTextStyle}>Task Trax</h3></Link>
+        {authenticated && <ConnectedUsernameDisplay id={id}/> }
         </div>
     )
 }
 
-export const ConnectedNavigation = connect(state => state)(Navigation)
+const mapStateToProps = ({session}) =>{
+    return {
+        id:session.id,
+    authenticated:session.authenticated == mutations.AUTHENTICATED
+    }
+}
+
+export const ConnectedNavigation = connect(mapStateToProps)(Navigation);
