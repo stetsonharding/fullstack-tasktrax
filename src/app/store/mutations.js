@@ -29,9 +29,9 @@ export const createTask = (taskID, groupID, ownerID) =>({
     ownerID
 })
 
-export const addTaskComment = (ownerID, commentID, taskID, content) => ({
-    type: ADD_TASK_COMMENT,
-    id: commentID,
+export const addTaskComment = (commentID, taskID, ownerID, content) => ({
+    type:ADD_TASK_COMMENT,
+    id:commentID,
     task: taskID,
     owner: ownerID,
     content

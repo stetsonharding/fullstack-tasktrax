@@ -35,7 +35,7 @@ export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTas
       </div>
 
 {/* Comments form */}
-<form className="form-inline" onSubmit={() => addTaskComment(e, sessionID, id )}>
+<form className="form-inline" onSubmit={() => addTaskComment(id,sessionID,e)}>
   <input className='form-control' type='text' name='commentContent' autoComplete="off" placeholder="Add a Comment" />
       <Link to="/Dashboard">
         <button>Done</button>
