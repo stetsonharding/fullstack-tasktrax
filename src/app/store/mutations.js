@@ -13,6 +13,7 @@ export const AUTHENTICATED = 'AUTHENTICATED'
 export const NOT_AUTHENTICATED ='NOT_AUTHENTICATED'
 export const SET_STATE = 'SET_STATE'
 export const SET_USERNAME = "SET_USERNAME"
+export const ADD_TASK_COMMENT = 'ADD_TASK_COMMENT'
 
 
 
@@ -26,6 +27,14 @@ export const createTask = (taskID, groupID, ownerID) =>({
     taskID,
     groupID,
     ownerID
+})
+
+export const addTaskComment = (ownerID, commentID, taskID, content) => ({
+    type: ADD_TASK_COMMENT,
+    id: commentID,
+    task: taskID,
+    owner: ownerID,
+    content
 })
 
 export const setTaskComplete = (id, isComplete) => (
