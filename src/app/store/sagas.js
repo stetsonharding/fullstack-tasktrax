@@ -91,7 +91,7 @@ while(true) {
 export function* commentCreationSaga() {
     while(true) {
         const comment = yield take(mutations.ADD_TASK_COMMENT);
- axios.post(url + '/comment/new', comment)
+ axios.post(url + '/comment/new', {comment})
     
     }
 }

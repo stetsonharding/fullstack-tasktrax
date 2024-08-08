@@ -69,6 +69,7 @@ export const store = createStore(
       return tasks;
     },
     comments(comments = [], action) {
+   console.log(action)   
       switch (action.type) {
         case mutations.ADD_TASK_COMMENT:
           const { type, owner, task, content, id } = action;

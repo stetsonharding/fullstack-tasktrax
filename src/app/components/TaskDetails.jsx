@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from '../store/mutations'
 import { take } from "redux-saga/effects";
+import uuid from 'uuid'
 
 export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTaskName, id, comments, task, groups, isComplete, setTaskComplete, sessionID }) => {
   return (
@@ -35,14 +36,14 @@ export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTas
       </div>
 
 {/* Comments form */}
-<form className="form-inline" onSubmit={() => addTaskComment(id,sessionID,e)}>
+<form className="form-inline" onSubmit={(e) => addTaskComment(id,sessionID,e)}>
   <input className='form-control' type='text' name='commentContent' autoComplete="off" placeholder="Add a Comment" />
-      <Link to="/Dashboard">
-        <button>Done</button>
+     
+        <button type='submit'>Done</button>
        
-      </Link>
+    
       <Link to="/Dashboard">
-        <button onClick={() => setDeleteTask(id)}>Delete</button>
+        <button type='button' onClick={() => setDeleteTask(id)}>Delete</button>
       </Link>
 </form>
    
@@ -56,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
   let comments = state.comments.filter(comment => comment.task === id)
-  let isOwner = state.sessionID = task.owner
+  let isOwner = state.session.id = task.owner
   let groups = state.groups;
 
   return {
@@ -80,20 +81,24 @@ return{
     dispatch(mutations.setTaskName(id, e.target.value))
   },
   setGroupName(e){
-    return dispatch(mutations.setGroupName(id, e.target.value))
+   dispatch(mutations.setGroupName(id, e.target.value))
   },
   setDeleteTask(id){
 dispatch(mutations.setDeleteTask(id))
   },
   addTaskComment(taskID, ownerID, e) {
+    e.preventDefault();
+    console.log('ran')
     let input = e.target['commentContent']
     let commentID = uuid();
     let content = input.value;
-    e.preventDefault();
-    if(content !== '') {
-      input.value = ''
-      dispatch(addTaskComment(ownerID, commentID, taskID, content))
-    }
+   if(content !== '') {
+    input.value = ''
+     dispatch(mutations.addTaskComment(commentID, taskID, ownerID, content))
+
+   }
+   
+    
 
   }
 
