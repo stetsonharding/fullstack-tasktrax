@@ -5,7 +5,7 @@ import * as mutations from '../store/mutations'
 import { take } from "redux-saga/effects";
 import uuid from 'uuid'
 
-export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTaskName, id, comments, task, groups, isComplete, setTaskComplete, sessionID }) => {
+export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTaskName, id, task, groups, isComplete, setTaskComplete, sessionID }) => {
   return (
    <>
    
@@ -27,13 +27,13 @@ export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTas
         </select>
       </form>
 
-      <div>
+      {/* <div>
         {comments.map(comment => (
           <div key={comment.id}>
             <span>{comment.content}</span>
             </div>
         ))}
-      </div>
+      </div> */}
 
 {/* Comments form */}
 <form className="form-inline" onSubmit={(e) => addTaskComment(id,sessionID,e)}>
@@ -56,14 +56,14 @@ export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTas
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
-  let comments = state.comments.filter(comment => comment.task === id)
+  // let comments = state.comments.filter(comment => comment.task === id)
   let isOwner = state.session.id = task.owner
   let groups = state.groups;
 
   return {
     id,
     task,
-    comments,
+    // comments,
     isOwner,
     sessionID: state.session.id,
     groups,

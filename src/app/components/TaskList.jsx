@@ -4,23 +4,58 @@ import { requestTaskCreation } from "../store/mutations";
 
 import Task from "./Task";
 
-export const TaskList = ({ tasks, name, id, createNewTask }) => {
+export const TaskList = ({
+  tasks,
+  name,
+  id,
+  createNewTask,
+  comments,
+  owner,
+}) => {
+  let taskComments;
+
+  console.log(comments);
   return (
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center h-100">
       <div
         className="card mt-5 m-4"
-        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: 'auto' }}
+        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: "auto" }}
       >
         <h5 className="p-2 italic">{name}</h5>
-        <div className="" style={{ height: '100%', overflow: 'auto' }}>
-          {tasks.map((task) => (
-          
-              <Task key={task.id} task={task} />
-           
-          ))}
+        <div className="" style={{ height: "100%", overflow: "auto" }}>
+          {tasks.map((task) => {
+            // Filter comments for the current task
+            const taskComments = comments.filter(
+              (comment) => comment.task === task.id
+            );
+
+            return (
+              <div key={task.id}>
+                {/* Render the Task component */}
+                <Task task={task} />
+
+                {/* Optionally render comments related to the task */}
+                {taskComments.length > 0 && (
+                  <div>
+                    {taskComments.map((comment) => (
+                      <span>{comment.content}</span>
+                      // <Comment key={comment.id} comment={comment} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        
+        {/* <div>
+          {comments.map((comment) => (
+            <div key={comment.id}>
+              <span>{comment.content}</span>
+            </div>
+          ))}
+        </div> */}
+
         <div className="d-flex align-items-end justify-content-center w-100">
           <button
             className="p-2 m-3  rounded btn btn-light w-100"
@@ -36,9 +71,11 @@ export const TaskList = ({ tasks, name, id, createNewTask }) => {
 
 const mapStateToProps = (state, ownProps) => {
   let groupID = ownProps.id;
+  let owner = state.tasks.owner;
   return {
     name: ownProps.name,
     id: groupID,
+    comments: state.comments,
     tasks: state.tasks.filter((task) => task.group === groupID),
   };
 };
