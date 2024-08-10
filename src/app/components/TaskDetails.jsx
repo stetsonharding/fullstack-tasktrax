@@ -1,20 +1,36 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import * as mutations from '../store/mutations'
+import * as mutations from "../store/mutations";
 import { take } from "redux-saga/effects";
-import uuid from 'uuid'
+import uuid from "uuid";
 
-export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTaskName, id, task, groups, isComplete, setTaskComplete, sessionID }) => {
+export const TaskDetails = ({
+  addTaskComment,
+  setDeleteTask,
+  setGroupName,
+  setTaskName,
+  id,
+  task,
+  groups,
+  isComplete,
+  setTaskComplete,
+  sessionID,
+}) => {
   return (
-   <>
-   
-   
+    <>
       <div>
-        <input className='form-control' type='text' onChange={setTaskName} value={task.name} />
+        <input
+          className="form-control"
+          type="text"
+          onChange={setTaskName}
+          value={task.name}
+        />
       </div>
       <div>
-        <button onClick={() => setTaskComplete(id, !isComplete)}>{isComplete ? "Reopen" : "Complete"}</button>
+        <button onClick={() => setTaskComplete(id, !isComplete)}>
+          {isComplete ? "Reopen" : "Complete"}
+        </button>
       </div>
       <form className="form-inline">
         <span>Change group:</span>{" "}
@@ -27,43 +43,40 @@ export const TaskDetails = ({ addTaskComment, setDeleteTask,setGroupName, setTas
         </select>
       </form>
 
-      {/* <div>
-        {comments.map(comment => (
-          <div key={comment.id}>
-            <span>{comment.content}</span>
-            </div>
-        ))}
-      </div> */}
+      {/* Comments form */}
+      <form
+        className="form-inline"
+        onSubmit={(e) => addTaskComment(id, sessionID, e)}
+      >
+        <input
+          className="form-control"
+          type="text"
+          name="commentContent"
+          autoComplete="off"
+          placeholder="Add a Comment"
+        />
 
-{/* Comments form */}
-<form className="form-inline" onSubmit={(e) => addTaskComment(id,sessionID,e)}>
-  <input className='form-control' type='text' name='commentContent' autoComplete="off" placeholder="Add a Comment" />
-     
-        <button type='submit'>Done</button>
-       
-    
-      <Link to="/Dashboard">
-        <button type='button' onClick={() => setDeleteTask(id)}>Delete</button>
-      </Link>
-</form>
-   
-   </>
+        <button type="submit">Done</button>
 
-    
+        <Link to="/Dashboard">
+          <button type="button" onClick={() => setDeleteTask(id)}>
+            Delete
+          </button>
+        </Link>
+      </form>
+    </>
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
-  // let comments = state.comments.filter(comment => comment.task === id)
-  let isOwner = state.session.id = task.owner
+  let isOwner = (state.session.id = task.owner);
   let groups = state.groups;
 
   return {
     id,
     task,
-    // comments,
     isOwner,
     sessionID: state.session.id,
     groups,
@@ -72,38 +85,35 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const id = ownProps.match.params.id;
-return{
-  setTaskComplete(id, isComplete){
-    dispatch(mutations.setTaskComplete(id, isComplete))
-   },
-  setTaskName(e){
-    dispatch(mutations.setTaskName(id, e.target.value))
-  },
-  setGroupName(e){
-   dispatch(mutations.setGroupName(id, e.target.value))
-  },
-  setDeleteTask(id){
-dispatch(mutations.setDeleteTask(id))
-  },
-  addTaskComment(taskID, ownerID, e) {
-    e.preventDefault();
-    console.log('ran')
-    let input = e.target['commentContent']
-    let commentID = uuid();
-    let content = input.value;
-   if(content !== '') {
-    input.value = ''
-     dispatch(mutations.addTaskComment(commentID, taskID, ownerID, content))
+  const id = ownProps.match.params.id;
+  return {
+    setTaskComplete(id, isComplete) {
+      dispatch(mutations.setTaskComplete(id, isComplete));
+    },
+    setTaskName(e) {
+      dispatch(mutations.setTaskName(id, e.target.value));
+    },
+    setGroupName(e) {
+      dispatch(mutations.setGroupName(id, e.target.value));
+    },
+    setDeleteTask(id) {
+      dispatch(mutations.setDeleteTask(id));
+    },
+    addTaskComment(taskID, ownerID, e) {
+      e.preventDefault();
+      console.log("ran");
+      let input = e.target["commentContent"];
+      let commentID = uuid();
+      let content = input.value;
+      if (content !== "") {
+        input.value = "";
+        dispatch(mutations.addTaskComment(commentID, taskID, ownerID, content));
+      }
+    },
+  };
+};
 
-   }
-   
-    
-
-  }
-
-
-}
-}
-
-export const ConnectedTaskDetail = connect(mapStateToProps, mapDispatchToProps)(TaskDetails);
+export const ConnectedTaskDetail = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TaskDetails);

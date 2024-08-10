@@ -4,16 +4,7 @@ import { requestTaskCreation } from "../store/mutations";
 
 import Task from "./Task";
 
-export const TaskList = ({
-  tasks,
-  name,
-  id,
-  createNewTask,
-  comments,
-  owner,
-}) => {
-  let taskComments;
-
+export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
   console.log(comments);
   return (
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center h-100">
@@ -32,29 +23,11 @@ export const TaskList = ({
             return (
               <div key={task.id}>
                 {/* Render the Task component */}
-                <Task task={task} />
-
-                {/* Optionally render comments related to the task */}
-                {taskComments.length > 0 && (
-                  <div>
-                    {taskComments.map((comment) => (
-                      <span>{comment.content}</span>
-                      // <Comment key={comment.id} comment={comment} />
-                    ))}
-                  </div>
-                )}
+                <Task task={task} taskComments={taskComments} />
               </div>
             );
           })}
         </div>
-
-        {/* <div>
-          {comments.map((comment) => (
-            <div key={comment.id}>
-              <span>{comment.content}</span>
-            </div>
-          ))}
-        </div> */}
 
         <div className="d-flex align-items-end justify-content-center w-100">
           <button
