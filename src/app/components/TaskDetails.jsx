@@ -51,7 +51,7 @@ export const TaskDetails = ({
       {/* Comments form */}
       <form
         className="form-inline"
-        onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent)}
+        onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
       >
         <input
           className="form-control"
@@ -84,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     id,
-    comment,
+    comment: comment ? comment : "",
     task,
     isOwner,
     sessionID: state.session.id,
@@ -108,13 +108,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setDeleteTask(id) {
       dispatch(mutations.setDeleteTask(id));
     },
-    addTaskComment(taskID, ownerID, e, content) {
+    addTaskComment(taskID, ownerID, e, content, commentContent) {
       e.preventDefault();
       console.log("ran");
       // let input = e.target["commentContent"];
       let commentID = uuid();
       // let content = input.value;
-      if (content !== "") {
+      if (content !== commentContent) {
       
         dispatch(mutations.addTaskComment(commentID, taskID, ownerID, content));
       }

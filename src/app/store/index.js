@@ -72,8 +72,11 @@ export const store = createStore(
    console.log(action)   
       switch (action.type) {
         case mutations.ADD_TASK_COMMENT:
-          const { type, owner, task, content, id } = action;
-          return [...comments, { owner, task, content, id }];
+        return comments.map((comment) => {
+       return comment.task === action.task ? {...comment, content: action.content} : comment
+         })
+          // const { type, owner, task, content, id } = action;
+          // return [...comments, { owner, task, content, id }];
         case mutations.SET_STATE:
           return action.state.comments;
     }
