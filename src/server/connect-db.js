@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 //const url = process.env.ORMONGO_URL || 'mongodb://localhost:27017/myorganizer';
-const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/TaskTrax'
+const url = process.env.MONGODB_URI || 'mongodb+srv://stetsonharding:lG6TgtR6BGHRbH9Q@tasktrax.jbd2uh2.mongodb.net/?retryWrites=true&w=majority&appName=TaskTrax'
 //Connection for reuse
 let db = null;
 

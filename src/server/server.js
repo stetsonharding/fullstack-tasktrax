@@ -78,6 +78,27 @@ export const deleteTask = async (task) => {
 }
 
 
+export const addTaskComment = async (comment) => {
+    let db = await connectDB();
+    let collection = db.collection('comments');
+
+   // Check if a comment with the given task already exists
+   const existingComment = await collection.findOne({ task: comment.task });
+
+   if (existingComment) {
+       // If the comment exists, update the content field
+       await collection.updateOne(
+           { task: comment.task }, // Filter by the comment's task field
+           { $set: { content: comment.content } } // Update the content field
+       );
+   } else {
+       // If the comment does not exist, insert a new comment
+       await collection.insertOne(comment);
+   }
+
+   
+}
+
 //root to add new tasks
 app.post('/task/new', async (req, res) => {
     let task = req.body.task;
@@ -96,6 +117,13 @@ app.post('/task/update', async (req, res) => {
 app.post('/task/delete', async (req, res) => {
     let task = req.body.task;
     await deleteTask(task);
+    res.status(200).send();
+})
+
+//root to add comment
+app.post('/comment/new', async (req, res) => {
+    let comment = req.body.comment;
+    await addTaskComment(comment)
     res.status(200).send();
 })
 
