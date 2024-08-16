@@ -5,7 +5,7 @@ import { requestTaskCreation } from "../store/mutations";
 import Task from "./Task";
 
 export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
-  console.log(comments);
+
   return (
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center h-100">
       <div
@@ -16,14 +16,15 @@ export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
         <div className="" style={{ height: "100%", overflow: "auto" }}>
           {tasks.map((task) => {
             // Filter comments for the current task
-            const taskComments = comments.filter(
-              (comment) => comment.task === task.id
-            );
+         
+
+              const taskComment = comments.find((comment) => comment.task === task.id) || {};
+            
 
             return (
               <div key={task.id}>
                 {/* Render the Task component */}
-                <Task task={task} taskComments={taskComments} />
+                <Task task={task} taskComment={taskComment} />
               </div>
             );
           })}

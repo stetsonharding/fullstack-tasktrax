@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
 
-const Task = ({ task, taskComments }) => {
+const Task = ({ task, taskComment }) => {
   return (
     <div
       className="card rounded p-1 m-3"
@@ -26,7 +26,7 @@ const Task = ({ task, taskComments }) => {
       </div>
 
       {/* Renders all comments for task */}
-      <Comment taskComments={taskComments} />
+      <Comment taskComment={taskComment} />
     </div>
   );
 };

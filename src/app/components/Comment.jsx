@@ -1,14 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
 
-const Comment = ({ taskComments }) => {
+
+const Comment = ({ taskComment }) => {
+  
   return (
     <div>
-      {taskComments.map((comment) => (
-        <div key={comment.id}>
-          <span>{comment.content}</span>
+    
+        <div >
+          {taskComment.content && <span>{taskComment.content}</span>}
         </div>
-      ))}
+    
     </div>
   );
 };
