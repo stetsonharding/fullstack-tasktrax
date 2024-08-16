@@ -12,12 +12,12 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(
   combineReducers({
     session(userSession = [] || {}, action) {
-       let { type, authenticated, session } = action;
+      let { type, authenticated, session } = action;
       //set session, groups, users, tasks to empty arrays
       // return userSession
       switch (type) {
         case mutations.SET_STATE:
-          return {...userSession, id:action.state.session.id}
+          return { ...userSession, id: action.state.session.id };
         case mutations.REQUEST_AUTHENTICATE_USER:
           return { ...userSession, authenticated: mutations.AUTHENTICATED };
         case mutations.PROCESSING_AUTHENTICATE_USER:
@@ -69,38 +69,51 @@ export const store = createStore(
       return tasks;
     },
     comments(comments = [], action) {
-   console.log(action)   
+      console.log(action);
       switch (action.type) {
         case mutations.ADD_TASK_COMMENT:
-       // Update the comments immutably
-       return comments.map((comment) => 
-        comment.task === action.task
-          ? { ...comment, content: action.content }
-          : comment
-      );
+          // Check if the comment for the task exists
+          const existingCommentIndex = comments.findIndex(
+            (comment) => comment.task === action.task
+          );
 
-    case mutations.SET_STATE:
-      // Directly set the state with the provided action state
-      return action.state.comments;
+          if (existingCommentIndex !== -1) {
+            // If the comment exists, update it
+            return comments.map((comment, index) =>
+              index === existingCommentIndex
+                ? { ...comment, content: action.content }
+                : comment
+            );
+          } else {
+            // If the comment doesn't exist, add it
+            return [
+              ...comments,
+              { task: action.task, content: action.content },
+            ];
+          }
 
-    default:
-      return comments;
-    }
+        case mutations.SET_STATE:
+          // Directly set the state with the provided action state
+          return action.state.comments;
+
+        default:
+          return comments;
+      }
     },
     groups(groups = [], action) {
-      switch(action.type){
+      switch (action.type) {
         case mutations.SET_STATE:
-          return action.state.groups
+          return action.state.groups;
       }
       return groups;
     },
     users(users = [], action) {
       switch (action.type) {
         case mutations.SET_STATE:
-          console.log("the User is:" , action.state.users)
-            return action.state.users;
-    }
-    return users;
+          console.log("the User is:", action.state.users);
+          return action.state.users;
+      }
+      return users;
     },
   }),
 
