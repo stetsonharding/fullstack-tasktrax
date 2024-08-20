@@ -67,14 +67,16 @@ export const updateTask = async (task) => {
 export const deleteTask = async (task) => {
     let { id } = task;
     let db = await connectDB();
-    let collection = db.collection('tasks')
+    let tasksCollection = db.collection('tasks');
+    let commentsCollection = db.collection('comments');
 
-    //update group attr
     if (id) {
-        //Pass the id of the task you want to update, and set the new group user has defined
-        await collection.deleteOne({ id })
-    }
+        // Delete comments associated with the task from the comments collection
+        await commentsCollection.deleteOne({ task: id });
+        // Delete the task from the tasks collection
+        await tasksCollection.deleteOne({ id });
 
+    }
 }
 
 
