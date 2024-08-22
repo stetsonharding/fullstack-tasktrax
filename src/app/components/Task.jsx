@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
+import {ConnectedOverflowMenu} from "./Overflowmenu";
 
 const Task = ({ task, taskComment }) => {
+  const [overFlowMenuShown, setOverflowMenuShown] = useState(false)
   return (
     <div
       className="card rounded p-1 m-3"
@@ -20,13 +22,16 @@ const Task = ({ task, taskComment }) => {
         <button
           className="button p-0 mr-2 btn border-none"
           style={{ height: "0", width: "0", background: "transparent" }}
+          onClick={() => setOverflowMenuShown(!overFlowMenuShown)}
         >
           ...
         </button>
       </div>
+     
 
       {/* Renders all comments for task */}
       <Comment taskComment={taskComment} />
+        {overFlowMenuShown && <ConnectedOverflowMenu id={task.id} />}
     </div>
   );
 };
