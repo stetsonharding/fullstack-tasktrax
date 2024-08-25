@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
-import {ConnectedOverflowMenu} from "./Overflowmenu";
+import {ConnectedOverflowMenu} from "../components/OverflowMenu";
 
 const Task = ({ task, taskComment }) => {
   const [overFlowMenuShown, setOverflowMenuShown] = useState(false)
