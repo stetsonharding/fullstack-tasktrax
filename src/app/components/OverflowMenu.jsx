@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const OverflowMenu = ({ id, setDeleteTask }) => {
   return (
-    <div className="overflow-menu mt-1 d-flex flex-column justify-content-end align-items-end w-full">
+    <div className="m-1 d-flex flex-column justify-content-end align-items-end w-100">
       <Link to={`/taskDetail/${id}`} className="w-25">
         <button type="button" className="btn btn-light btn-sm w-100">Edit</button>
       </Link>

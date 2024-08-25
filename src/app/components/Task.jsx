@@ -19,19 +19,20 @@ const Task = ({ task, taskComment }) => {
             {task.name}
           </p>
         </Link>
-        <button
-          className="button p-0 mr-2 btn border-none"
-          style={{ height: "0", width: "0", background: "transparent" }}
+        <span
+          style={{ height: "25px", width: "25px", cursor: 'pointer', fontSize: '22px' }}
           onClick={() => setOverflowMenuShown(!overFlowMenuShown)}
         >
           ...
-        </button>
+        </span>
       </div>
      
+
 
       {/* Renders all comments for task */}
       <Comment taskComment={taskComment} />
         {overFlowMenuShown && <ConnectedOverflowMenu id={task.id} />}
+
     </div>
   );
 };
