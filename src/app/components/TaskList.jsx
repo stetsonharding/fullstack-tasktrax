@@ -16,11 +16,7 @@ export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
         <div className="" style={{ height: "100%", overflow: "auto" }}>
           {tasks.map((task) => {
             // Filter comments for the current task
-         
-
-              const taskComment = comments.find((comment) => comment.task === task.id) || {};
-            
-
+            const taskComment = comments.find((comment) => comment.task === task.id) || {};
             return (
               <div key={task.id}>
                 {/* Render the Task component */}
