@@ -7,20 +7,16 @@ import Task from "./Task";
 export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
 
   return (
-    <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center h-100">
+    <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-around mt-4" style={{height: '85%'}} >
       <div
-        className="card mt-5 m-4"
-        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: "auto" }}
+        className="card"
+        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: "auto", height: '100%' }}
       >
         <h5 className="p-2 italic">{name}</h5>
         <div className="" style={{ height: "100%", overflow: "auto" }}>
           {tasks.map((task) => {
             // Filter comments for the current task
-         
-
-              const taskComment = comments.find((comment) => comment.task === task.id) || {};
-            
-
+            const taskComment = comments.find((comment) => comment.task === task.id) || {};
             return (
               <div key={task.id}>
                 {/* Render the Task component */}
