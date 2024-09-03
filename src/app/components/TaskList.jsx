@@ -6,11 +6,13 @@ import Task from "./Task";
 
 export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
 
+
+
   return (
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-around mt-4" style={{height: '85%'}} >
       <div
         className="card"
-        style={{ width: "80%", backgroundColor: "#dfdfdf", overflow: "auto", height: '100%' }}
+        style={{ width: "80%", backgroundColor: "#f8f3f2", overflow: "auto", height: '100%' }}
       >
         <h5 className="p-2 italic">{name}</h5>
         <div className="" style={{ height: "100%", overflow: "auto" }}>
@@ -28,7 +30,7 @@ export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
 
         <div className="d-flex align-items-end justify-content-center w-100">
           <button
-            className="p-2 m-3  rounded btn btn-light w-100"
+            className="p-2 m-3  rounded btn btn btn-primary w-100"
             onClick={() => createNewTask(id)}
           >
             +Add Task

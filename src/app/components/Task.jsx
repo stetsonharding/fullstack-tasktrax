@@ -14,7 +14,7 @@ const Task = ({ task, taskComment }) => {
         <Link key={task.id} to={`/taskDetail/${task.id}`}>
           <p
             className="card-title text-dark"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", textDecoration: task.group === 'G3' ? 'line-through' : null }}
           >
             {task.name}
           </p>
