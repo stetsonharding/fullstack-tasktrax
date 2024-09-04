@@ -24,20 +24,17 @@ export const TaskDetails = ({
   console.log(comment)
   return (
     <>
-      <div>
+     
+  
+      
+      <form className="form-inline">
         <input
           className="form-control"
           type="text"
           onChange={setTaskName}
           value={task.name}
         />
-      </div>
-      <div>
-        <button onClick={() => setTaskComplete(id, !isComplete)}>
-          {isComplete ? "Reopen" : "Complete"}
-        </button>
-      </div>
-      <form className="form-inline">
+      
         <span>Change group:</span>{" "}
         <select onChange={setGroupName} value={task.group}>
           {groups.map((group) => (

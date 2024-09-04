@@ -12,7 +12,7 @@ export const TaskList = ({ tasks, name, id, createNewTask, comments }) => {
     <div className=" col-sm-12 col-md-6 col-lg-4 d-flex justify-content-around mt-4" style={{height: '85%'}} >
       <div
         className="card"
-        style={{ width: "80%", backgroundColor: "#f8f3f2", overflow: "auto", height: '100%' }}
+        style={{ width: "80%", backgroundColor: "#f8f7f7", overflow: "auto", height: '100%' }}
       >
         <h5 className="p-2 italic">{name}</h5>
         <div className="" style={{ height: "100%", overflow: "auto" }}>
@@ -55,7 +55,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createNewTask(id) {
-      console.log("creating new task..", id);
       dispatch(requestTaskCreation(id));
     },
   };
