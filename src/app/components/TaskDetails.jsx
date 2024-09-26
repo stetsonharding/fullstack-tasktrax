@@ -2,8 +2,12 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
-import { take } from "redux-saga/effects";
+
 import uuid from "uuid";
+import login_bg from "../../assets/login_bg.jpg"
+
+
+// import login_bg from 
 
 export const TaskDetails = ({
   addTaskComment,
@@ -21,21 +25,21 @@ export const TaskDetails = ({
 
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
-  console.log(comment)
   return (
-    <>
-      <div>
+    <div className="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100">
+      <h3>Your Task Details</h3>
+      <div className='d-flex'> 
         <input
           className="form-control"
           type="text"
           onChange={setTaskName}
           value={task.name}
         />
-      </div>
       <div>
         <button onClick={() => setTaskComplete(id, !isComplete)}>
           {isComplete ? "Reopen" : "Complete"}
         </button>
+      </div>
       </div>
       <form className="form-inline">
         <span>Change group:</span>{" "}
@@ -71,7 +75,7 @@ export const TaskDetails = ({
           </button>
         </Link>
       </form>
-    </>
+    </div>
   );
 };
 
