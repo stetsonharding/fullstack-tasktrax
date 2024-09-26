@@ -26,15 +26,24 @@ export const TaskDetails = ({
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
   return (
+<<<<<<< HEAD
     <div className="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100">
       <h3>Your Task Details</h3>
       <div className='d-flex'> 
+=======
+    <>
+     
+  
+      
+      <form className="form-inline">
+>>>>>>> bf9b86ee08b9b1fbbbbc01365d4320492b62126d
         <input
           className="form-control"
           type="text"
           onChange={setTaskName}
           value={task.name}
         />
+<<<<<<< HEAD
       <div>
         <button onClick={() => setTaskComplete(id, !isComplete)}>
           {isComplete ? "Reopen" : "Complete"}
@@ -42,6 +51,9 @@ export const TaskDetails = ({
       </div>
       </div>
       <form className="form-inline">
+=======
+      
+>>>>>>> bf9b86ee08b9b1fbbbbc01365d4320492b62126d
         <span>Change group:</span>{" "}
         <select onChange={setGroupName} value={task.group}>
           {groups.map((group) => (
