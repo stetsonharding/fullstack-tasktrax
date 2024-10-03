@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
 
 import uuid from "uuid";
-import login_bg from '../../assets/login_bg.jpg'
+import login_bg from '../../../src/assets/login_bg.jpg'
+
 
 
 // import login_bg from 
@@ -25,12 +26,21 @@ export const TaskDetails = ({
 
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
-  return (
-    <div className="container-fluid" style={{border: '4px solid blue', backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat'}}>
-      <div className='row  h-100 d-flex justify-content-center align-items-center'>
-        <div className='col d-flex flex-column justify-content-center align-items-center' style={{border: '4px solid red'}}>
 
-      <h3>Your Task Details</h3>
+  // const containerStyle = {
+  //   backgroundImage: `url(${login_bg})`,
+  //   backgroundSize: 'cover',
+  //   backgroundPosition: 'center',
+  //   backgroundRepeat: 'no-repeat',
+  //   height: '100vh', // Ensure the container takes full height
+  // };
+
+
+  return (
+    <div className="container-fluid">
+      <div className='row  h-100 d-flex justify-content-center align-items-center'>
+        <div className='col d-flex h-50 flex-column justify-content-center align-items-center'>
+
       {/* Change Group */}
       <form className="form-inline">
       </form>
@@ -42,28 +52,29 @@ export const TaskDetails = ({
         </div> */}
       </div>
 
-      {/* Comments form */}
       <form
-        className="form-inline d-flex flex-column"
-        style={{width: '40%', border: '1px solid green'}}
+        className="form-inline d-flex justify-content-center align-items-center flex-column h-75 w-50 rounded"
+        style={{ border: '1px solid black'}}
         onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
         >
-        <span>Change group:</span>{" "}
-        <select onChange={setGroupName} value={task.group}>
+      {/* Comments form */}
+        <span style={{fontSize:'1.2rem'}}>Change Task Status:</span>{" "}
+        <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style={{width: '150px'}} onChange={setGroupName} value={task.group}>
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {group.name}
             </option>
           ))}
         </select>
+          <h5>Your Task Details</h5>
         <input
-          className="form-control"
+          className="form-control w-50 mb-1 rounded"
           type="text"
           onChange={setTaskName}
           value={task.name}
         />
         <input
-          className="form-control"
+          className="form-control w-50 rounded"
           type="text"
           name="commentContent"
           autoComplete="off"
@@ -72,11 +83,11 @@ export const TaskDetails = ({
         onChange={(e) => setCommentContent(e.target.value)}
         />
 
-      <div className='d-flex'>
+      <div className='d-flex mt-2 g-2'>
 
-      <Link to="/Dashboard"><button type="submit">Done</button></Link>
+      <Link to="/Dashboard"><button className="btn btn-primary mr-2"type="submit">Done</button></Link>
         <Link to="/Dashboard">
-          <button type="button" onClick={() => setDeleteTask(id)}>
+          <button type="button" className="btn btn-danger" onClick={() => setDeleteTask(id)}>
             Delete
           </button>
         </Link>
