@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
 
 import uuid from "uuid";
-import login_bg from "../../assets/login_bg.jpg"
+import login_bg from '../../assets/login_bg.jpg'
 
 
 // import login_bg from 
@@ -26,34 +26,28 @@ export const TaskDetails = ({
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
   return (
-<<<<<<< HEAD
-    <div className="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100">
+    <div className="container-fluid" style={{border: '4px solid blue', backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat'}}>
+      <div className='row  h-100 d-flex justify-content-center align-items-center'>
+        <div className='col d-flex flex-column justify-content-center align-items-center' style={{border: '4px solid red'}}>
+
       <h3>Your Task Details</h3>
+      {/* Change Group */}
+      <form className="form-inline">
+      </form>
       <div className='d-flex'> 
-=======
-    <>
-     
-  
-      
-      <form className="form-inline">
->>>>>>> bf9b86ee08b9b1fbbbbc01365d4320492b62126d
-        <input
-          className="form-control"
-          type="text"
-          onChange={setTaskName}
-          value={task.name}
-        />
-<<<<<<< HEAD
-      <div>
+      {/* <div>
         <button onClick={() => setTaskComplete(id, !isComplete)}>
-          {isComplete ? "Reopen" : "Complete"}
+        {isComplete ? "Reopen" : "Complete"}
         </button>
+        </div> */}
       </div>
-      </div>
-      <form className="form-inline">
-=======
-      
->>>>>>> bf9b86ee08b9b1fbbbbc01365d4320492b62126d
+
+      {/* Comments form */}
+      <form
+        className="form-inline d-flex flex-column"
+        style={{width: '40%', border: '1px solid green'}}
+        onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
+        >
         <span>Change group:</span>{" "}
         <select onChange={setGroupName} value={task.group}>
           {groups.map((group) => (
@@ -62,13 +56,12 @@ export const TaskDetails = ({
             </option>
           ))}
         </select>
-      </form>
-
-      {/* Comments form */}
-      <form
-        className="form-inline"
-        onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
-      >
+        <input
+          className="form-control"
+          type="text"
+          onChange={setTaskName}
+          value={task.name}
+        />
         <input
           className="form-control"
           type="text"
@@ -79,14 +72,18 @@ export const TaskDetails = ({
         onChange={(e) => setCommentContent(e.target.value)}
         />
 
-        <button type="submit">Done</button>
+      <div className='d-flex'>
 
+      <Link to="/Dashboard"><button type="submit">Done</button></Link>
         <Link to="/Dashboard">
           <button type="button" onClick={() => setDeleteTask(id)}>
             Delete
           </button>
         </Link>
+      </div>
       </form>
+        </div>
+      </div>
     </div>
   );
 };

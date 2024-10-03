@@ -38,7 +38,7 @@ export const Login = ({ authenticateUser, authenticated }) => {
                 type="password"
                 placeholder="Enter Password"
                 name="password"
-                defaultValue=""
+                defaultValue="tupples"
                 required
               />
               <span>
