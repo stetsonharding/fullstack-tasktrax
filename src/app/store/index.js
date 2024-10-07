@@ -22,8 +22,6 @@ export const store = createStore(
           return { ...userSession, authenticated: mutations.AUTHENTICATED };
         case mutations.PROCESSING_AUTHENTICATE_USER:
           return { ...userSession, authenticated };
-        // case mutations.NOT_AUTHENTICATED:
-        //   return { ...session, authenticated: mutations.NOT_AUTHENTICATED };
         default:
           return userSession;
       }
@@ -89,7 +87,6 @@ export const store = createStore(
         case mutations.SET_STATE:
           // Directly set the state with the provided action state
           return action.state.comments;
-
         default:
           return comments;
       }
@@ -104,7 +101,6 @@ export const store = createStore(
     users(users = [], action) {
       switch (action.type) {
         case mutations.SET_STATE:
-          console.log("the User is:", action.state.users);
           return action.state.users;
       }
       return users;
