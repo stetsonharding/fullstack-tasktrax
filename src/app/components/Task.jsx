@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
-import {ConnectedOverflowMenu} from "../components/OverflowMenu";
+import { ConnectedOverflowMenu } from "../components/OverflowMenu";
 
 const Task = ({ task, taskComment }) => {
   const [overFlowMenuShown, setOverflowMenuShown] = useState(false)
@@ -14,7 +14,7 @@ const Task = ({ task, taskComment }) => {
         <Link key={task.id} to={`/taskDetail/${task.id}`}>
           <p
             className="card-title text-dark"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", textDecoration: task.group === 'G3' ? 'line-through' : null }}
           >
             {task.name}
           </p>
@@ -26,13 +26,9 @@ const Task = ({ task, taskComment }) => {
           ...
         </span>
       </div>
-     
-
-
       {/* Renders all comments for task */}
       <Comment taskComment={taskComment} />
-        {overFlowMenuShown && <ConnectedOverflowMenu id={task.id} />}
-
+      {overFlowMenuShown && <ConnectedOverflowMenu id={task.id} />}
     </div>
   );
 };

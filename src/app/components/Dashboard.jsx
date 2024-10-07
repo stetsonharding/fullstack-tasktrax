@@ -16,6 +16,11 @@ export const Dashboard = ({ groups, toDoLength, doingLength, doneLength }) => {
                 <TaskOverview name="Doing" length={doingLength} />
                 <TaskOverview name="Done" length={doneLength}/> 
             </div>
+            <div>
+                <h5 className="m-1 mt-3">Task Sections</h5>
+                <hr />
+
+            </div>
             <div className="row w-100 h-100">
             {groups.map(group => (
                     <ConnectedTaskList key={group.id} id={group.id} name={group.name} />

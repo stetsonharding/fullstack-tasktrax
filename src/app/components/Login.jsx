@@ -5,6 +5,7 @@ import * as mutations from "../store/mutations";
 import { LoginIcon } from "./LoginIcon";
 import login_bg from "../../assets/login_bg.jpg"
 
+
 export const Login = ({ authenticateUser, authenticated }) => {
   const gradientTextStyle = {
     background: 'linear-gradient(55deg, #018de2,#0067ce)',
@@ -38,7 +39,7 @@ export const Login = ({ authenticateUser, authenticated }) => {
                 type="password"
                 placeholder="Enter Password"
                 name="password"
-                defaultValue=""
+                defaultValue="tupples"
                 required
               />
               <span>
