@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
 
 import uuid from "uuid";
-import login_bg from '../../../src/assets/login_bg.jpg'
 
+import login_bg from "../../assets/login_bg.jpg"
 
-
-// import login_bg from 
 
 export const TaskDetails = ({
   addTaskComment,
@@ -27,17 +25,11 @@ export const TaskDetails = ({
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
 
-  // const containerStyle = {
-  //   backgroundImage: `url(${login_bg})`,
-  //   backgroundSize: 'cover',
-  //   backgroundPosition: 'center',
-  //   backgroundRepeat: 'no-repeat',
-  //   height: '100vh', // Ensure the container takes full height
-  // };
-
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid"  style={{ 
+     backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat'
+    }}>
       <div className='row  h-100 d-flex justify-content-center align-items-center'>
         <div className='col d-flex h-50 flex-column justify-content-center align-items-center'>
 
@@ -53,8 +45,8 @@ export const TaskDetails = ({
       </div>
 
       <form
-        className="form-inline d-flex justify-content-center align-items-center flex-column h-75 w-50 rounded"
-        style={{ border: '1px solid black'}}
+        className="form-inline d-flex justify-content-center  flex-column h-75 w-50 rounded"
+        style={{ backgroundColor: 'white', border: '2px solid black'}}
         onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
         >
       {/* Comments form */}
@@ -67,25 +59,33 @@ export const TaskDetails = ({
           ))}
         </select>
           <h5>Your Task Details</h5>
+          <div  className="form-group w-75 rounded  ">
+          <label className=" " for="name">Task Name</label>
         <input
-          className="form-control w-50 mb-1 rounded"
+            className="form-control w-100 rounded"
           type="text"
+          name="name"
           onChange={setTaskName}
           value={task.name}
         />
-        <input
-          className="form-control w-50 rounded"
-          type="text"
-          name="commentContent"
-          autoComplete="off"
-          placeholder="Add a Comment"
-        value={commentContent}
-        onChange={(e) => setCommentContent(e.target.value)}
-        />
+          </div>
+       <div className="form-group w-75 rounded  ">
+    <label className=" " for="commentContent">Comment</label>
+    <input
+      className="form-control w-100 rounded"
+      type="text"
+      name="commentContent"
+      autoComplete="off"
+      placeholder="Add a Comment"
+      value={commentContent}
+      onChange={(e) => setCommentContent(e.target.value)}
+    />
+</div>
+
 
       <div className='d-flex mt-2 g-2'>
 
-      <Link to="/Dashboard"><button className="btn btn-primary mr-2"type="submit">Done</button></Link>
+      <button className="btn btn-primary mr-2"type="submit">Done</button>
         <Link to="/Dashboard">
           <button type="button" className="btn btn-danger" onClick={() => setDeleteTask(id)}>
             Delete
