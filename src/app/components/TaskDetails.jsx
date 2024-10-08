@@ -23,7 +23,7 @@ export const TaskDetails = ({
 
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
-  
+  console.log(task)
 
 //Styles for Task Details heading
   const gradientTextStyle = {
@@ -103,6 +103,7 @@ const mapStateToProps = (state, ownProps) => {
   let isOwner = (state.session.id = task.owner);
   let comment = state.comments.find(comment => comment.task === id)
   let groups = state.groups;
+  
 
   return {
     id,

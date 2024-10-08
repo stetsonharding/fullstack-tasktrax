@@ -21,7 +21,7 @@ export const Dashboard = ({ groups, toDoLength, doingLength, doneLength }) => {
                 <hr />
 
             </div>
-            <div className="row w-100 h-100">
+            <div className="row w-100 h-100 d-flex flex-row-reverse">
             {groups.map(group => (
                     <ConnectedTaskList key={group.id} id={group.id} name={group.name} />
                 ))}
