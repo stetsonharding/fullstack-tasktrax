@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
 import uuid from "uuid";
-import login_bg from "../../assets/login_bg.jpg"
+import login_bg from '../../assets/login_bg.jpg';
+
 import { history } from "../store/History";
 
 export const TaskDetails = ({
@@ -22,20 +23,24 @@ export const TaskDetails = ({
 
   const [commentContent, setCommentContent] = useState(comment.content || "")
 
+  console.log(task)
+
+//Styles for Task Details heading
   const gradientTextStyle = {
     background: 'linear-gradient(55deg, #018de2,#0067ce)',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
   };
+
   return (
-    <div className="container-fluid" style={{
+    <div className="container-fluid"  style={{ 
       backgroundImage: `url(${login_bg})`, backgroundSize: 'cover', backgroundPosition: 'center', imagebackgroundRepeat: 'no-repeat'
-    }}>
+     }}>
       <div className='row  h-100 d-flex justify-content-center align-items-center'>
         <div className='col d-flex h-50 flex-column justify-content-center align-items-center'>
           <form
             className="form-inline d-flex justify-content-center  flex-column h-100 w-50 rounded"
-            style={{ backgroundColor: 'white', border: '2px solid black' }}
+            style={{ backgroundColor: 'white', border: '1px solid black' }}
             onSubmit={(e) => addTaskComment(id, sessionID, e, commentContent, comment.content)}
           >
             <h4 style={gradientTextStyle}>Task Details</h4>
@@ -98,6 +103,7 @@ const mapStateToProps = (state, ownProps) => {
   let isOwner = (state.session.id = task.owner);
   let comment = state.comments.find(comment => comment.task === id)
   let groups = state.groups;
+  
 
   return {
     id,

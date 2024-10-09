@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import * as sagas from "./sagas";
 import * as mutations from "./mutations";
 
+
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
@@ -57,6 +58,13 @@ export const store = createStore(
           return tasks.filter((task) => {
             return task.id !== action.taskID;
           });
+        case mutations.SET_TASK_COMPLETE:
+          return tasks.map((task) => {
+            return task.id === action.taskID 
+            ? { ...task, isComplete: action.isComplete, group: !action.isComplete ? 'G1' : 'G3' } 
+            : task;
+          
+          })
       }
       return tasks;
     },
