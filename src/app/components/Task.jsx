@@ -5,10 +5,18 @@ import { ConnectedOverflowMenu } from "../components/OverflowMenu";
 
 const Task = ({ task, taskComment }) => {
   const [overFlowMenuShown, setOverflowMenuShown] = useState(false)
+
+  let taskBackground = {
+    G1: 'white',
+    G2: '#f9f961',
+    G3: '#b9f961'
+  }
+
+  let backgroundColor = taskBackground[task.group]
   return (
     <div
       className="card rounded p-1 m-3"
-      style={{ minHeight: "150px", height: "auto" }}
+      style={{ minHeight: "150px", height: "auto", backgroundColor: backgroundColor }}
     >
       <div className="card-body d-flex justify-content-between">
         <Link key={task.id} to={`/taskDetail/${task.id}`}>
