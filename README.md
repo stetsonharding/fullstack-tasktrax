@@ -32,19 +32,6 @@ Update your version of Node.js to the latest
 Clone the finished repo and start from there
 Problem: I'm getting weird error XYZ!
 
-Try:
 
-Cancel npm run dev (with ctrl-C on windows) and run it again
-If there error mentions any particular file, visit that file and make sure you didn't make any common errors (capitalization of property names, forgetting to destructure paramaters with curly brackets)
-Still no luck? Clone the finished repo and prune away parts of it until you are at the point you left off.
-Challenge Task Solutions
-Connected Username Component
-Create a connected username component which matches user data with an ID provided as a prop.
-Update the server-side state assembly process to include the usernames (but not passwords or any sensitive data) of any users which will be relevant to the current session.
-Sign Up
-This version of the application is found at the Add Sign Up Branch.
 
-Add a link to the sign up page from the login page.
-Create a Sign Up route, which is almost identical to the Login route.
-Add a saga to communicate requests from the Login Route to the server.
-Add a route to the server which creates new users in the database.
+
